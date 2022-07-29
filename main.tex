@@ -1,16 +1,39 @@
-\documentclass[12pt]{report}
+\documentclass[12pt]{article}
 
-\usepackage{graphicx}
+\usepackage{graphicx} % for putting images
+\usepackage{subfiles} % for including other files
+\usepackage{indentfirst} % for indenting the first line of a paragraph
 
-\title{Abstracts}
-\author{VK}
-\date{}
+\title{Quantum Robot}
+\author{Aritra Mukhopadhyay}
+\date{} % so that the date doesn't appear
 
 \begin{document}
 
     \input{titlepage}
-	% \input{abstract}
 
+    % adding the abstract
+    % \pagebreak % comment out later 
+	\input{abstract.tex}
 
+    % adding a table of contents
+    \pagebreak
+    \tableofcontents
+    
+    % write the Introduction here
+	\pagebreak % comment out later
+    \section{Introduction}
+    \subfile{Intro}
+    
+    
+    
+    
+    
+    
+    
+    % include the bibliographic references
+    \pagebreak % comment out later 
+    \bibliographystyle{plain}
+    \bibliography{mybib.bib}
 
 \end{document}
