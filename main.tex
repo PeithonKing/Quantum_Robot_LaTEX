@@ -9,25 +9,32 @@
 \author{Aritra Mukhopadhyay}
 \date{} % so that the date doesn't appear
 
+% the next 5 lines help in removing the ugly
+% boxes around links and making them look better
+\hypersetup{
+    colorlinks = true,
+    urlcolor = blue,
+    linkcolor = black,
+    citecolor = blue,
+}
+
 \begin{document}
 
     \input{titlepage}
 
     % adding the abstract
-    % \pagebreak % comment out later 
-	\input{abstract.tex}
+    \input{abstract.tex}
 
     % adding the contents page
     \pagebreak
     \tableofcontents
     
-    % write the Introduction here
-	\pagebreak % comment out later
+    \pagebreak
     \section{Introduction}
     \subfile{sections/Intro.tex}
     
-    \section{Quantum Circuits}
-    \subfile{sections/QuantumCircuits.tex}
+    \section{A Problem to Solve}
+    \subfile{sections/Problem.tex}
     
     
     
