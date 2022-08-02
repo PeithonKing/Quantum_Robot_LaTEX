@@ -5,8 +5,6 @@
 *.fls
 *.log
 *.out
-*.pdf
+*.lof
 *.synctex.gz
 *.toc
-clean.py
-!keep/*

@@ -37,13 +37,15 @@ def clean(path = ".", delete = True):
     global gitignore
     l = os.listdir(path)
     to_delete = [x for x in l if not os.path.isdir(x) and not_keep(x)]
+    print(f"listdir({path}) = {l}")
+    print(f"to_delete ({path}) = {to_delete}\n")
     for i in to_delete:
         if delete: os.remove(f"{path}/{i}")
         g = f"{path}/{i}"[2:]
         if g not in gitignore:
             gitignore.append(g)
     # print(f"Deleted {len(to_delete)} files in {path}")
-    dirs = [name for name in l if os.path.isdir(name) and ".git" not in name]
+    dirs = [name for name in l if os.path.isdir(name) and not_keep(name)]
     # print("One batch done\n")
     for dir in dirs:
         # print(f"looking into {path}/{dir}")
@@ -57,10 +59,9 @@ if __name__ == "__main__":
         print("Deleted", len(gitignore), "files in Total")
     else: clean(delete = False)
     
-    
+    gitignore = "\n".join(gitignore)
     # making a .gitignore file
     if input("Make a .gitignore file? (y/n) ") == "y":
-        gitignore = "\n".join(gitignore)
         with open(".gitignore", "w") as f:
             f.write(gitignore)
     print(gitignore)

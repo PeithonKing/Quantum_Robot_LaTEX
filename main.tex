@@ -4,10 +4,13 @@
 \usepackage{subfiles} % for including other files
 \usepackage{indentfirst} % for indenting the first line of a paragraph
 \usepackage{hyperref}
+% \usepackage{caption}
+% \usepackage{subcaption}
+\usepackage{subfig}
 
 \title{Quantum Robot}
 \author{Aritra Mukhopadhyay}
-\date{} % so that the date doesn't appear
+\date{} % so that the date doesn't appear on top
 
 % the next 5 lines help in removing the ugly
 % boxes around links and making them look better
@@ -31,10 +34,15 @@
     
     \pagebreak
     \section{Introduction}
-    \subfile{sections/Intro.tex}
+    \subfile{intro.tex}
     
-    \section{A Problem to Solve}
-    \subfile{sections/Problem.tex}
+    \section{Braitenberg Vehicles}
+    \subfile{braitenberg_vehicles.tex}
+    
+    
+    
+    
+    
     
     
     
@@ -42,6 +50,7 @@
     
     % include the bibliographic references
     \pagebreak % comment out later 
+    \listoffigures
     \bibliographystyle{apalike}
     \bibliography{mybib.bib}
 
