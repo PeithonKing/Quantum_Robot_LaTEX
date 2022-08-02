@@ -3,6 +3,7 @@
 \usepackage{graphicx} % for putting images
 \usepackage{subfiles} % for including other files
 \usepackage{indentfirst} % for indenting the first line of a paragraph
+\usepackage{hyperref}
 
 \title{Quantum Robot}
 \author{Aritra Mukhopadhyay}
@@ -16,16 +17,17 @@
     % \pagebreak % comment out later 
 	\input{abstract.tex}
 
-    % adding a table of contents
+    % adding the contents page
     \pagebreak
     \tableofcontents
     
     % write the Introduction here
 	\pagebreak % comment out later
     \section{Introduction}
-    \subfile{Intro}
+    \subfile{sections/Intro.tex}
     
-    
+    \section{Quantum Circuits}
+    \subfile{sections/QuantumCircuits.tex}
     
     
     
@@ -33,7 +35,7 @@
     
     % include the bibliographic references
     \pagebreak % comment out later 
-    \bibliographystyle{plain}
+    \bibliographystyle{apalike}
     \bibliography{mybib.bib}
 
 \end{document}
