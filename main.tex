@@ -1,10 +1,11 @@
 \documentclass[12pt]{article}
 
 \usepackage{graphicx} % for putting images
-% \usepackage{subfiles} % for including other files
 \usepackage{indentfirst} % for indenting the first line of a paragraph
 \usepackage{hyperref}
 \usepackage{subfig}
+\usepackage{physics}
+\usepackage{multirow}
 
 \title{Quantum Robot}
 \author{Aritra Mukhopadhyay}
@@ -21,6 +22,7 @@
 
 \begin{document}
 
+    % The title of the document is placed here
     \input{titlepage.tex}
 
     % adding the abstract
@@ -36,6 +38,7 @@
     \input{braitenberg_vehicles.tex}  % britenberg vehicles
     \input{problem.tex}  % problem statement
     \input{behaviour.tex}  % behaviour of the robot
+    \input{solution.tex}  % solution
     
     
     
@@ -48,6 +51,7 @@
     % include the bibliographic references
     \pagebreak % comment out later 
     \listoffigures
+    \listoftables
     \bibliographystyle{apalike}
     \bibliography{mybib.bib}
     \nocite{*}

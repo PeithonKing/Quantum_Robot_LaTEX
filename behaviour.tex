@@ -1,3 +1,19 @@
 \section{Behaviour of the Vehicle}
 
-    
+Our vehicle behaves quite differently from any of the basic Braitenberg Vehicles. The vehicle is equipped with 2 quantum photosensors which return digital output ($\ket{0}$ or $\ket{1}$). Depending upon the sensor values, the wheels either rotate or do not rotate. When both the sensors give $\ket{0}$, both the wheels remain on. If one of the sensors is $\ket{1}$, the wheel of only that side remains on. If both the sensors are $\ket{1}$, and both the wheels are off, the propeller starts and the vehicle takes off. (the propeller remains off the rest of the time).
+
+
+    \begin{table}[t]
+        \centering
+        \begin{tabular}{|cc|ccc|c|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Sensor Output}}         & \multicolumn{3}{c|}{\textbf{Actuator Input}}                                                              & \multirow{2}{*}{\textbf{Behaviour}} \\ \cline{1-5}
+            \multicolumn{1}{|c|}{\textbf{Left}} & \textbf{Right} & \multicolumn{1}{c|}{\textbf{Left Motor}} & \multicolumn{1}{c|}{\textbf{Right Motor}} & \textbf{Propeller} &                                     \\ \hline
+            \multicolumn{1}{|c|}{0}             & 0              & \multicolumn{1}{c|}{1}                   & \multicolumn{1}{c|}{1}                    & 0                  & Moves Forward                       \\ \hline
+            \multicolumn{1}{|c|}{0}             & 1              & \multicolumn{1}{c|}{0}                   & \multicolumn{1}{c|}{1}                    & 0                  & Turns Left                          \\ \hline
+            \multicolumn{1}{|c|}{1}             & 0              & \multicolumn{1}{c|}{1}                   & \multicolumn{1}{c|}{0}                    & 0                  & Turns Right                         \\ \hline
+            \multicolumn{1}{|c|}{1}             & 1              & \multicolumn{1}{c|}{0}                   & \multicolumn{1}{c|}{0}                    & 1                  & Takes off                           \\ \hline
+        \end{tabular}
+        \caption{Table to test captions and labels.}
+        \label{table:1}
+    \end{table}
