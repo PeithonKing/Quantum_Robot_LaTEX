@@ -2,6 +2,7 @@ import os
 
 imp_patterns = [".git*",
                "keep*",
+               "main.pdf",
                "*.tex",
                "*.jpg",
                "*.png",
