@@ -4,8 +4,6 @@
 \usepackage{subfiles} % for including other files
 \usepackage{indentfirst} % for indenting the first line of a paragraph
 \usepackage{hyperref}
-% \usepackage{caption}
-% \usepackage{subcaption}
 \usepackage{subfig}
 
 \title{Quantum Robot}
@@ -32,6 +30,7 @@
     \pagebreak
     \tableofcontents
     
+    % the different sections of the document
     \pagebreak
     \section{Introduction}
     \subfile{intro.tex}
@@ -39,7 +38,11 @@
     \section{Braitenberg Vehicles}
     \subfile{braitenberg_vehicles.tex}
     
+    \section{The Problem and Modified Design}
+    \subfile{problem.tex}
     
+    \section{Behaviour of the Vehicle}
+    \subfile{behaviour.tex}
     
     
     
@@ -53,5 +56,6 @@
     \listoffigures
     \bibliographystyle{apalike}
     \bibliography{mybib.bib}
+    \nocite{*}
 
 \end{document}
