@@ -3,60 +3,95 @@
 \usepackage{graphicx} % for putting images
 \usepackage{indentfirst} % for indenting the first line of a paragraph
 \usepackage{hyperref}
+\usepackage{xcolor}
 \usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{listings}
 \usepackage{physics}
 \usepackage{multirow}
+\usepackage[nottoc,numbib]{tocbibind}
+
+
+%New colors defined below
+\definecolor{codeblue}{rgb}{0,0,0.6}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,		 
+	breaklines=true,				 
+	captionpos=b,					
+	keepspaces=true,				 
+	numbers=left,					
+	numbersep=5pt,				  
+	showspaces=false,				
+	showstringspaces=false,
+	showtabs=false,				  
+	tabsize=2
+}
 
 \title{Quantum Robot}
 \author{Aritra Mukhopadhyay}
 \date{} % so that the date doesn't appear on top
 
+
 % the next 5 lines help in removing the ugly
 % boxes around links and making them look better
 \hypersetup{
-    colorlinks = true,
-    urlcolor = black,
-    linkcolor = black,
-    citecolor = black,
+	colorlinks = true,
+	urlcolor = black,
+	linkcolor = black,
+	citecolor = black,
 }
 
+\lstset{style=mystyle}
 \begin{document}
 
-    % The title of the document is placed here
-    \input{titlepage.tex}
+	% The title of the document is placed here
+	\input{titlepage.tex}
 
-    % adding the abstract
-    \input{abstract.tex}
+	% adding the abstract
+	\input{abstract.tex}
 
-    % adding the contents page
-    \pagebreak
-    \tableofcontents
-    
-    % the different sections of the document
-    \pagebreak
-    \input{intro.tex}  % introduction
-    \input{braitenberg_vehicles.tex}  % britenberg vehicles
-    \input{problem.tex}  % problem statement
-    \input{behaviour.tex}  % behaviour of the robot
-    \input{solution.tex}  % solution
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    % include the bibliographic references
-    \pagebreak % comment out later 
-    \listoffigures
-    \listoftables
-    \bibliographystyle{apalike}
-    \bibliography{mybib.bib}
-    \nocite{*}
+	% adding the contents page
+	\pagebreak
+	\tableofcontents
+	\addtocontents{toc}{~\hfill\textbf{Page}\par}
+
+
+	
+	% the different sections of the document
+	\pagebreak
+	\input{intro.tex}  % introduction
+	\input{braitenberg_vehicles.tex}  % britenberg vehicles
+	\input{problem.tex}  % problem statement
+	\input{behaviour.tex}  % behaviour of the robot
+	\input{solution.tex}  % solution
+	
+	
+	
+	
+	
+	
+	
+	
+	% include the bibliographic references
+	\pagebreak
+	% \addcontentsline{toc}{section}{References}
+	\bibliographystyle{apalike}
+	\bibliography{mybib.bib}
+	\nocite{*}
+
+	% including the list of figures and the list of tables
+	\listoffigures
+	\listoftables
 
 \end{document}
-
-
-

@@ -1,0 +1,129 @@
+\subsubsection{Importing the libraries}
+\label{code:importing_the_libraries}
+\begin{lstlisting}[language=Python]
+from qiskit import *
+from qiskit.visualization import *\end{lstlisting}
+
+\subsubsection{Making the Quantum Circuit}
+\textbf{Making the Qiskit Classes:}
+\label{code:making_the_qiskit_classes}
+\begin{lstlisting}[language=Python]
+# 1. making the sensor registers
+sensors = QuantumRegister(2, 'sensor')
+# 2. making the motor registers
+motors = QuantumRegister(3, 'motor')
+# 3. making the classical registers, 1 for each motors
+creg_c = ClassicalRegister(3, 'measurements')
+# 4. Adding the registers to get the quantum circuit
+circuit = QuantumCircuit(sensors, motors, creg_c)\end{lstlisting}
+\vspace{3mm}
+
+\textbf{Initializing the Circuit:} Demonstrating initialization with sensor value as = $\ket{10}$. Please feel free to try out the other states ($\ket{00}$, $\ket{01}$ and $\ket{11}$). This is Similar to the digitalRead function of Arduino.
+\label{code:initializing_the_circuit}
+\begin{lstlisting}[language=Python]
+ket_0 = [1, 0]
+ket_1 = [0, 1]
+
+# quantumRead = [ket_0, ket_0] # |00>
+# quantumRead = [ket_0, ket_1] # |01>
+quantumRead = [ket_1, ket_0]   # |10>
+# quantumRead = [ket_1, ket_1] # |11>
+
+circuit.initialize(quantumRead[0], [sensors[0]])
+circuit.initialize(quantumRead[1], [sensors[1]])\end{lstlisting}
+\vspace{3mm}
+
+\textbf{Designing the circuit:}
+\label{code:designing_the_circuit}
+\begin{lstlisting}[language=Python]
+circuit.ccx(sensors[0], sensors[1], motors[2])
+circuit.x(sensors[0])
+circuit.x(sensors[1])
+circuit.cx(sensors[0], motors[1])
+circuit.cx(sensors[1], motors[0])
+circuit.barrier()
+circuit.measure(motors[0], creg_c[2])
+circuit.measure(motors[1], creg_c[1])
+circuit.measure(motors[2], creg_c[0])
+circuit.draw(output = 'mpl')\end{lstlisting}
+
+\begin{figure}[h]%
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/5qubit_qc.png}
+	\caption{Circuit of the 5 Qubit Design}%
+	\label{fig:5qubit_qc}%
+\end{figure}
+
+\subsubsection{Executing the Quantum Circuit on a Simulator}
+\label{code:executing_the_quantum_circuit_on_a_simulator}
+\begin{lstlisting}[language=Python]
+comp = Aer.get_backend("qasm_simulator")
+results = execute(circuit, comp, shots = 1024).result()
+print("results:", results.get_counts(circuit))
+plot_histogram(results.get_counts(circuit))\end{lstlisting}
+
+{\fontfamily{pcr}\selectfont \noindent results: \{`100': 1024\}}
+\vspace{5mm}
+
+We got the result $\ket{100}$ with 100\% probability as output from the circuit after giving $\ket{10}$ as input. This matches with the \hyperref[table:1]{\textit{Table 1}}. We also checked the other 3 input cases ($\ket{00}$, $\ket{01}$ and $\ket{11}$) and verified that the circuit is working as expected.
+
+\textbf{Note:} The probability came out to be 100\%, which is an ideal result. But in real world situations there is always some error involved in the measurement. The probability of getting the other results is not zero in those cases.
+
+\begin{figure}[h]%
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/5qubit_sim.png}
+	\caption{\textbf{Histogram:} 5 Qubit circuit executed on a simulator}%
+	\label{fig:5qubit_sim}%
+\end{figure}
+
+
+\subsubsection{Executing the Quantum Circuit on an actual Quantum Computer}
+\label{code:executing_the_quantum_circuit_on_a_quantum_computer}
+\textbf{Importing the relevant libraries}
+\label{code:importing_the_libraries_2}
+\begin{lstlisting}[language=Python]
+from qiskit.providers.ibmq import least_busy
+from qiskit.tools.monitor import job_monitor
+from qiskit.providers.ibmq.ibmqbackend import IBMQSimulator
+# IBMQ.load_account(<API_Token>)
+IBMQ.load_account()\end{lstlisting}
+{\fontfamily{pcr}\selectfont <AccountProvider for IBMQ(hub='ibm-q', group='open',\par
+project='main')>}
+\vspace{3mm}
+
+\textbf{Choosing the least busy backend}
+
+\begin{lstlisting}[language=Python]
+provider = IBMQ.get_provider('ibm-q')
+q_comp = least_busy(
+	[x for x in provider.backends() if not isinstance(x, IBMQSimulator)]
+	)\end{lstlisting}
+\vspace{3mm}
+
+\textbf{Executing the circuit on a Quantum Computer}
+
+\begin{lstlisting}[language=Python]
+job = execute(circuit, q_comp, shots = 16384)
+job_monitor(job)
+print("results:", job.result().get_counts(circuit))
+plot_histogram(job.result().get_counts(circuit))\end{lstlisting}
+
+{\fontfamily{pcr}\selectfont
+\noindent Job Status: job has successfully run
+
+\noindent results:\par
+\{`000': 819,\par
+`001': 438,\par
+`010': 157,\par
+`011': 112,\par
+`100': 12416,\par
+`101': 1399,\par
+`110': 877,\par
+`111': 166\}}
+
+\begin{figure}[h]%
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/5qubit_act.png}
+	\caption{\textbf{Histogram:} 5 Qubit circuit executed on an actual Quantum Computer}%
+	\label{fig:5qubit_act}%
+\end{figure}

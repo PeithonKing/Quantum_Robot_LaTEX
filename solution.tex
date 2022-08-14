@@ -1,1 +1,27 @@
 \section{My Solutions to the Problem}
+
+	The car gets binary inputs ($\ket{0}$ and $\ket{1}$) from two sensors attached to it. We need to build a quantum circuit to give the output to the motors like the \hyperref[table:1]{\textit{Table 1}}.
+	
+	In the ~\cite{mahanti2019quantum} article, the authors tried to solve the problem by defining a new sort of quantum gate, the \textbf{two-control-two-target Toffoli (C\textsubscript{2}(X\textsuperscript{3}X\textsuperscript{4})) gate}. They also made a large Quantum Circuit. But, I found some much easier and smaller approaches to the problem.	
+	\vspace{3mm}
+
+	\noindent {\large From the \hyperref[table:1]{\textit{Table 1}}, we can say that:}
+	
+	\begin{itemize}
+		\item M1 = not(S2) = $\sim$ S2
+		\item M2 = not(S1) = $\sim$ S1
+		\item M3 = S1 and S2 = S1 $\land$ S2
+	\end{itemize}
+	\noindent {\large I came up with two easier solutions:}
+	\begin{enumerate}
+		\item \textbf{5 cubit:} This approach uses 5 qubits. We use two Quantum Registers for the sensor inputs, and the rest three for the motor outputs.
+		\item \textbf{3 cubit:} This approach uses 3 qubits. Here, we have two Quantum Registers for taking input from the two sensors. We process those signals and use them as inputs to the first two motor. We use the third Quantum Registers for output to the third motor.
+	\end{enumerate}
+
+	\subsection{Approach 1: 5 Cubit Solution}
+	\label{solution:1}
+		\input{solution_1.tex}
+
+	\subsection{Approach 2: 3 Cubit Solution}
+	\label{solution:2}
+		\input{solution_2.tex}
