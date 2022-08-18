@@ -64,7 +64,9 @@
 	% adding the contents page
 	\pagebreak
 	\tableofcontents
-	\addtocontents{toc}{~\hfill\textbf{Page}\par}
+	\pagebreak
+	\vspace*{5cm}
+	\listoffigures
 
 
 	
@@ -75,24 +77,19 @@
 	\input{problem.tex}  % problem statement
 	\input{behaviour.tex}  % behaviour of the robot
 	\input{solution.tex}  % solution
-	
-	
-	
-	
-	
-	
-	
-	
+	\input{future.tex}
+
+
+
+
+
+	\pagebreak
+	\input{furtherreading.tex}
 	% include the bibliographic references
 	% \pagebreak
 	% \addcontentsline{toc}{section}{References}
 	\bibliographystyle{apalike}
 	\bibliography{mybib.bib}
 	\nocite{*}
-
-	% \pagebreak
-	% including the list of figures and the list of tables
-	\listoffigures
-	% \listoftables
 
 \end{document}
